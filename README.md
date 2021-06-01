@@ -83,9 +83,11 @@ Since the difference of input vs output voltage for this LDO is well above the d
 
 ### Proof of concept
 As a proof of concept, the designed models were printed and attached to the spray head of the bottle.
-Overall the design functioned as intended and the maximum measured current draw was around 1.6A.
+The controller was assembled on a breadboard, power was supplied by a controllable power supply.
 
-Most noteable issues were:
+The design functioned as intended and the maximum measured current draw was around 1.6A.
+
+Issues requiring attention were:
 1. Collision of the servo horn with the servo body
 2. The nut attaching the 3d printed arm to the servo horn could undo itself over time
 3. When the bolt attaching the spray lever to the 3d printed arm was tightened too much, the entire spray head would deform due to the angle at which the spray lever was pulled.
@@ -102,9 +104,24 @@ A shown in the video, the rightmost hole is bent quite a bit which might cause i
 ![proof of concept video](image/spray_bottle.webp)
 
 ## Conclusion
-Aluminium extrusions
-completely non-invasive adjustments to automate spray bottle
-files provided in amf and freecad format
+
+The automatic mister was designed and assembled from stuff I had laying around within 2 days and is now completely assembled and functions as expected.
+The remaining 2 days will be used to further test reliabillity of the system and spot possible weak points due to wear and tear.
+
+Not only was the automatic mister constructed within time, it has been designed in a non-invasive way: No permanent modifications to the spray bottle or head are required to add the automation.
+
+Although the system can operate without falling over (even without the bottle being full of water), I added a frame made out of aluminium extrusions for extra stabillity. 
+
+Editable FreeCAD files, 3d printable AMF files and code are supplied via the github linked below.
+
+### future work
+Future work for this project is validation and refinement of the existing system:
+- Tests over a longer period of time have to be performed to evaluate which parts will break first and what possible solutions might be.
+- The spray head still slightly deforms due to the angle it is pulled at. This might be resolved by adding a secondary arm to the servo horn opposed to the current arm. A way to achieve this is to add a stable axis along which the servo horn(s) rotate when activated.
+- The aluminum frame should be replaced by a smaller support to help stabilize it or the center of mass should be lowered.
+- A PCB layout could be added to improve reliability of the controller.
+- The ESP8266 is not a secure module. If this system is connected to a server which requires authentication, I highly recommend using devices like an esp32 which has flash encryption.
+
 
 ![Completed system](image/result.jpg)
 
