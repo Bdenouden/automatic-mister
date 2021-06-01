@@ -16,16 +16,18 @@ Furthermore a solution had to be found and created within 4 days so there was no
 
 
 ## Design
-The biggest issue was the amount of force required to activate the spray nozzle. The motor must obviously have enough torque but at the same time, the bottle should not move when the motor is activated.
+The biggest problem was the amount of force required to activate the spray nozzle. The motor must obviously have enough torque but at the same time, the bottle should not move when the motor is activated.
 
 Speaking of activation: this system should mist my mushrooms twice a day and each time it activates a couple of 'pumps' are required.
 Preferably, there would also be a feedback to the user like emails or notifications to existing home automation sytems.
 To obtain this behaviour, a wifi enabled microprocessor is required along with a small pcb to manage power distribution.
 
-This issue is therefore divided into thre separate issues: 
+This problem is therefore divided into thre separate issues: 
 - Selecting a sufficiently strong motor
 - Designing a robust, preferably self-supporting system
 - Controlling the system
+
+At the end of this section, a proof of concept is evaluated.
 
 ### Motor
 To solve the first issue, the MG996R servo motor was used; a high torque metal gear servo. Although this motor has sufficient torque (11kg/cm @ 6V), it can draw up to 2.5A of current.
@@ -62,6 +64,9 @@ ESP8266 -> wemos D1 mini, usb breakout for power in, power distribution, protect
 ### Proof of concept
 ![](image/spray_bottle.webp)
 
+rotation unscrews nut from servo horn -> self-locking nut used
+flex in the arm which actuates the spray lever is beneficiary compared to a fixed arm: requires less force and the system is more forgiving for fast accelerations. con: it will break over time
+
 ## Conclusion
 Aluminium extrusions
 completely non-invasive adjustments to automate spray bottle
@@ -69,7 +74,7 @@ files provided in amf and freecad format
 
 ![](image/result.jpg)
 
-## Note
+### Note
 Please ignore the 'danger' and 'imflammable' labels on the spray bottle, this is what I had at hand and it has been cleaned thourouly, I promise!
 
 <!-- More info and code:
