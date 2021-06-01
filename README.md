@@ -27,7 +27,7 @@ This problem is therefore divided into thre separate issues:
 - Designing a robust, preferably self-supporting system
 - Controlling the system
 
-At the end of this section, a proof of concept is evaluated.
+At the end of this section, a proof of concept is evaluated. 
 
 ### Motor
 To solve the first issue, the MG996R servo motor was used; a high torque metal gear servo. Although this motor has sufficient torque (11kg/cm @ 6V), it can draw up to 2.5A of current.
@@ -51,32 +51,65 @@ The image below shows the assembly of the cad model and the servo motor.
 In order to attach the servo horn to the spray lever, a small clip which just snaps onto said lever and an arm to couple the clip to the servo horn was designed as well. 
 These models are not explicitly shown in this section but will be visible in later pictures.
 
-![](image/assembly.png)
-
-
+![Model of the CAD model and attached servo motor](image/assembly.png)
 
 
 ### Controller
-ESP8266 -> wemos D1 mini, usb breakout for power in, power distribution, protection diode on wemos module and on pcb, schematics
+The controller consists of a ESP8266 based development board: the WEMOS D1 mini, a power distribution and a level shifter. 
+The WEMOS D1 is a microctonroller with integrated wifi functionallity and functions as the brains of the system. 
+It will send a signal to the servo when the motor must be activated. 
+To ensure compatibillity, a level shifter has been put in between.
+This shifts the 3.3V control signal to 5V, which is the supply voltage of the servo motor and also provides any drive current required. 
 
-<!-- ![](image/schematic.svg) -->
+#### Power distribution
+Although the WEMOS module has a 5V output, this pin can unfortunately not be used to power the servo motor. 
+This is due to the schottky diode which is soldered in series with the usb input of the WEMOS: it can only handle up to 500mA continuously before releasing its magic smoke. 
+Experiments using the servo motor have shown that it will easily exceed this maximum under load.
+To prevent the schottky from burning through, a power distribution has been added:
+- A micro USB connector is added for power input
+- This power input is directly connected to the power supply pin of the servo motor and the '+' pins of the headers.
+- The power input is connected to the 5V pin of the WEMOS module via a 'regular' 1N4001 diode.
+
+Diode D1 is added to prevent the shottky diode on the WEMOS module from burning when the module is plugged into the computer. 
+During programming the 5V pin of the module is attached to the usb power, without D1, the servo motor would become powered as well.
+When power is supplied via J1 (the micro usb for power input) approximatley 4.3V is applied to the 5V pin.
+This 5V pin is internally connected to a low dropout regulator with a maximum dropout voltage of 0.5V at full load
+[[WEMOS D1 Mini schematic](https://www.wemos.cc/en/latest/_static/files/sch_d1_mini_v3.0.0.pdf), [LDO datasheet](https://datasheet.lcsc.com/szlcsc/Nanjing-Micro-One-Elec-ME6211C33M5G-N_C82942.pdf)].
+Since the difference of input vs output voltage for this LDO is well above the dropout voltage, the 3.3V line of the WEMOS module will not be negatively affected by diode D1.
+
+![schematic design](PCB/auto_mist/auto_mist.svg)
+
+<!-- TODO add firmware description -->
 
 ### Proof of concept
-![](image/spray_bottle.webp)
+As a proof of concept, the designed models were printed and attached to the spray head of the bottle.
+Overall the design functioned as intended and the maximum measured current draw was around 1.6A.
 
-rotation unscrews nut from servo horn -> self-locking nut used
-flex in the arm which actuates the spray lever is beneficiary compared to a fixed arm: requires less force and the system is more forgiving for fast accelerations. con: it will break over time
+Most noteable issues were:
+1. Collision of the servo horn with the servo body
+2. The nut attaching the 3d printed arm to the servo horn could undo itself over time
+3. When the bolt attaching the spray lever to the 3d printed arm was tightened too much, the entire spray head would deform due to the angle at which the spray lever was pulled.
+
+Issue 1 was solved by shortening the 3d printed arm by 5 mm. 
+This placed the servo horn in a more horizontal position when the spray lever is uncompressed and vertically downwards when fully compressed, thus never hitting the servo body.
+
+To fix issue 2 a self-locking nut was used on rotating parts and the third issue was fixed by simply not tightening said bolt. 
+Although the spray head still deforms a bit, it's now comparable to when compressed by human hands. 
+
+Something to watch out for is the deformation of the 3d printed arm.
+A shown in the video, the rightmost hole is bent quite a bit which might cause it to break due to wear and tear over time.
+
+![proof of concept video](image/spray_bottle.webp)
 
 ## Conclusion
 Aluminium extrusions
 completely non-invasive adjustments to automate spray bottle
 files provided in amf and freecad format
 
-![](image/result.jpg)
+![Completed system](image/result.jpg)
 
 ### Note
 Please ignore the 'danger' and 'imflammable' labels on the spray bottle, this is what I had at hand and it has been cleaned thourouly, I promise!
 
 More info and code:
-
 [ ![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) ](https://github.com/Bdenouden/automatic-mister)
