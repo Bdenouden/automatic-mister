@@ -77,9 +77,6 @@ files provided in amf and freecad format
 ### Note
 Please ignore the 'danger' and 'imflammable' labels on the spray bottle, this is what I had at hand and it has been cleaned thourouly, I promise!
 
-<!-- More info and code:
-<a href="https://github.com/klushok-etv/SantaSignaller"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>
+More info and code:
 
-[test](test2)
-
-[ ![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) ](https://github.com/klushok-etv/SantaSignaller) -->
+[ ![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) ](https://github.com/Bdenouden/automatic-mister)
