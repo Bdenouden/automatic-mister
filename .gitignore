@@ -1,3 +1,6 @@
 # ignore temporary freecad files
 *.FCStd1
 CAD/debug.log
+
+# ignore local vscode settings
+.vscode
