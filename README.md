@@ -1,7 +1,7 @@
 # Mister automatic
 An automated approach to misting my mushroom farm
 
-
+![cover](image/cover.jpg)
 
 ## Introduction
 For my birthday this year, I've received my own mushroom farm. 
@@ -121,12 +121,13 @@ Future work for this project is validation and refinement of the existing system
 - The aluminum frame should be replaced by a smaller support to help stabilize it or the center of mass should be lowered.
 - A PCB layout could be added to improve reliability of the controller.
 - The ESP8266 is not a secure module. If this system is connected to a server which requires authentication, I highly recommend using devices like an esp32 which has flash encryption.
-
+- A mosfet should be added to toggle the power supply of the servo motor. Not only will this save power, 99% of the time the servo motor is just waiting for instructions, it will also remove the need for finetuning the 'off' position of the servo. The spray lever is strong enough to retract to its prefered position when the servo motor has no power. As a result the servo motor wont have to use any force to combat the slight force which is applied by the lever when the position is slightly off.
 
 ![Completed system](image/result.jpg)
 
 ### Note
 Please ignore the 'danger' and 'imflammable' labels on the spray bottle, this is what I had at hand and it has been cleaned thourouly, I promise!
 
-More info and code:
+### More info and code:
+
 [ ![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) ](https://github.com/Bdenouden/automatic-mister)
