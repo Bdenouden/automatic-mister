@@ -113,12 +113,12 @@ void loop() {
   Serial.println(timeClient.getFormattedTime());
   hour = timeClient.getHours(); // returns hours in 24h format
 
-  if (hour != prevHour && hour == 14) {
+  if (hour != prevHour && hour == SPRAY_HOUR_1) {
     //    water round 1
     prevHour = hour;
     spray();
   }
-  else if (hour != prevHour && hour == 15) {
+  else if (hour != prevHour && hour == SPRAY_HOUR_2) {
     //    water round 2
     prevHour = hour;
     spray();

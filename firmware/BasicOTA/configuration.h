@@ -7,5 +7,7 @@
 
 #define SERVO_PIN D8
 
+#define SPRAY_HOUR_1 10
+#define SPRAY_HOUR_2 18
 
 #endif
